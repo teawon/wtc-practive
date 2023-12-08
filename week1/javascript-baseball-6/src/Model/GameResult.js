@@ -1,3 +1,5 @@
+import { BASEBALL } from "../constants";
+
 class GameResult {
   #ballCount;
   #strikeCount;
@@ -12,7 +14,7 @@ class GameResult {
   }
 
   checkIsGameEnd() {
-    return this.#strikeCount === 3;
+    return this.#strikeCount === BASEBALL.baseBallLen;
   }
 }
 

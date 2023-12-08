@@ -1,10 +1,10 @@
-import { Console } from "@woowacourse/mission-utils";
 import BaseBall from "../Model/BaseBall.js";
 import Computer from "../Model/Computer.js";
 import GameResult from "../Model/GameResult.js";
 import InputView from "../Views/InputView.js";
 import OutputView from "../Views/OutputView.js";
 import BaseBallValidator from "../BaseBallValidator.js";
+import { COMMAND } from "../constants.js";
 class BaseballController {
   #isExit;
 
@@ -44,7 +44,7 @@ class BaseballController {
       // 재 시작 여부 확인
       const userInput = await InputView.readExitOrContinue();
       BaseBallValidator.exitOrContinueInput(userInput);
-      if (userInput === "2") {
+      if (userInput === COMMAND.endGame) {
         this.#isExit = true;
       }
     }
@@ -54,22 +54,6 @@ class BaseballController {
     const computerNumber = this.computer.createRandomNumber();
     const computerBaseBall = new BaseBall(computerNumber);
     return computerBaseBall;
-  }
-
-  #printResult(ballCount, strikeCount) {
-    let result = "";
-
-    if (ballCount === 0 && strikeCount === 0) {
-      Console.print("낫싱");
-      return;
-    }
-    if (ballCount > 0) {
-      result += `${ballCount}볼`;
-    }
-    if (strikeCount > 0) {
-      result += ` ${strikeCount}스트라이크`;
-    }
-    Console.print(`${result.trim()}\n`);
   }
 }
 
