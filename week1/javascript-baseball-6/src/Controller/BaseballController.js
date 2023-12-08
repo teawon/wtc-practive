@@ -2,6 +2,7 @@ import { Console } from "@woowacourse/mission-utils";
 import BaseBall from "../Model/BaseBall.js";
 import Computer from "../Model/Computer.js";
 import GameResult from "../Model/GameResult.js";
+import InputView from "../Views/InputView.js";
 
 class BaseballController {
   #isExit;
@@ -22,9 +23,7 @@ class BaseballController {
       let isPlaying = true;
       while (isPlaying) {
         /// 사용자 입력을 받아 BaseBall 객체 생성
-        const playerInput = await Console.readLineAsync(
-          "숫자를 입력해주세요 :"
-        );
+        const playerInput = await InputView.readNumbers();
         if (!playerInput) {
           throw new Error("[ERROR] 입력값이 없습니다.");
         }
@@ -46,9 +45,7 @@ class BaseballController {
         }
       }
       // 재 시작 여부 확인
-      const userInput = await Console.readLineAsync(
-        "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n"
-      );
+      const userInput = await InputView.readExitOrContinue();
       if (userInput === "2") {
         this.#isExit = true;
       }
