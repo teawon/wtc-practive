@@ -17,6 +17,7 @@ class BaseballController {
 
     while (!this.#isExit) {
       await this.#playGame();
+      await this.#checkExitOrContinue();
     }
   }
 
@@ -26,9 +27,7 @@ class BaseballController {
     let isPlaying = true;
     while (isPlaying) {
       const playerBaseBall = await this.#getPlayerBaseBall();
-
       const gameResult = new GameResult(playerBaseBall, computerBaseBall);
-
       const { ballCount, strikeCount } = gameResult.getResult();
       OutputView.printGameResult(ballCount, strikeCount);
 
@@ -37,8 +36,6 @@ class BaseballController {
         OutputView.printCompleteGame();
       }
     }
-
-    await this.#checkExitOrContinue();
   }
 
   #getComputerAnswer() {
