@@ -1,4 +1,4 @@
-import BaseballController from "./Controller/BaseballController";
+import BaseballController from "./Controller/BaseballController.js";
 class App {
   async play() {
     const baseballController = new BaseballController();

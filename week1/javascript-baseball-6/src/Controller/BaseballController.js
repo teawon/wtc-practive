@@ -1,7 +1,7 @@
 import { Console } from "@woowacourse/mission-utils";
-import BaseBall from "../Model/BaseBall";
-import Computer from "../Model/Computer";
-import GameResult from "../Model/GameResult";
+import BaseBall from "../Model/BaseBall.js";
+import Computer from "../Model/Computer.js";
+import GameResult from "../Model/GameResult.js";
 
 class BaseballController {
   #isExit;
