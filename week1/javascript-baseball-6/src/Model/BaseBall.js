@@ -3,7 +3,7 @@ class BaseBall {
   #number;
 
   constructor(number) {
-    BaseBallValidator.baseBallValidator(number);
+    BaseBallValidator.baseBallModel(number);
     this.#number = number;
   }
 
