@@ -1,4 +1,4 @@
-import { BASEBALL } from "../constants";
+import { BASEBALL } from "../constants.js";
 
 class GameResult {
   #ballCount;
