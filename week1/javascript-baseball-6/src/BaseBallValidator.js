@@ -10,12 +10,14 @@ const BaseBallValidator = {
       `[ERROR] ${BASEBALL.baseBallLen}자리 숫자를 입력해주세요`
     );
     isNotDuplicate(value, `[ERROR] 중복되지 않는 숫자를 입력해주세요`);
-    isInRange(
-      value,
-      BASEBALL.baseBallMinNum,
-      BASEBALL.baseBallMaxNum,
-      `[ERROR] 1부터 9까지의 숫자를 입력해주세요`
-    );
+    value.forEach((num) => {
+      isInRange(
+        num,
+        BASEBALL.baseBallMinNum,
+        BASEBALL.baseBallMaxNum,
+        `[ERROR] 1부터 9까지의 숫자를 입력해주세요`
+      );
+    });
   },
 
   baseBallNumberInput: (input) => {
