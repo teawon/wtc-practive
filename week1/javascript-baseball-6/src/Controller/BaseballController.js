@@ -3,7 +3,8 @@ import BaseBall from "../Model/BaseBall.js";
 import Computer from "../Model/Computer.js";
 import GameResult from "../Model/GameResult.js";
 import InputView from "../Views/InputView.js";
-
+import OutputView from "../Views/OutputView.js";
+import BaseBallValidator from "../BaseBallValidator.js";
 class BaseballController {
   #isExit;
 
@@ -13,7 +14,7 @@ class BaseballController {
   }
   async start() {
     // 초기 메세지 출력
-    Console.print("숫자 야구 게임을 시작합니다.\n");
+    OutputView.printInit();
 
     while (!this.#isExit) {
       // 초기값 세팅
@@ -24,28 +25,25 @@ class BaseballController {
       while (isPlaying) {
         /// 사용자 입력을 받아 BaseBall 객체 생성
         const playerInput = await InputView.readNumbers();
-        if (!playerInput) {
-          throw new Error("[ERROR] 입력값이 없습니다.");
-        }
-        if (playerInput.length !== 3) {
-          throw new Error("[ERROR] 3자리 숫자를 입력해주세요");
-        }
+        BaseBallValidator.baseBallNumberInput(playerInput);
+
         const playerInputArr = playerInput.split("").map(Number);
         const playerBaseBall = new BaseBall(playerInputArr);
 
         /// BaseBall 결과 비교
         const gameResult = new GameResult(playerBaseBall, computerBaseBall);
         const { ballCount, strikeCount } = gameResult.getResult();
-        console.log(ballCount, strikeCount);
-        this.#printResult(ballCount, strikeCount);
+
+        OutputView.printGameResult(ballCount, strikeCount);
 
         if (gameResult.checkIsGameEnd()) {
           isPlaying = false;
-          Console.print("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n");
+          OutputView.printCompleteGame();
         }
       }
       // 재 시작 여부 확인
       const userInput = await InputView.readExitOrContinue();
+      BaseBallValidator.exitOrContinueInput(userInput);
       if (userInput === "2") {
         this.#isExit = true;
       }
