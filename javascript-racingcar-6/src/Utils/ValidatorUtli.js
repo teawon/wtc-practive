@@ -6,13 +6,13 @@ const ValidatorUtil = {
   },
 
   isNotOverLength(value, maxLen, message) {
-    if (value.length > maxLen) {
+    if (value > maxLen) {
       throw new Error(message);
     }
   },
 
   isNotShorterLength(value, minLen, message) {
-    if (value.length < minLen) {
+    if (value < minLen) {
       throw new Error(message);
     }
   },

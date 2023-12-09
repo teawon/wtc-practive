@@ -9,7 +9,7 @@ const CarRaceValidator = {
   carModel(name) {
     isNotNull(name, "[ERROR] 이름이 존재하지 않습니다");
     isNotOverLength(
-      name,
+      name.length,
       RACE_CAR.maxCarLength,
       "[ERROR] 이름이 5자를 초과합니다"
     );
@@ -17,7 +17,7 @@ const CarRaceValidator = {
 
   RaceModel(cars, tryCount) {
     isNotShorterLength(
-      cars,
+      cars.length,
       1,
       "[ERROR] 1개 이상의 자동차가 경기에 참여해야합니다"
     );
