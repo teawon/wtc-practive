@@ -1,4 +1,4 @@
-const ValidatorUtil = {
+const ValidatorUtils = {
   isNotNull(value, message) {
     if (!value) {
       throw new Error(message);
@@ -30,4 +30,4 @@ const ValidatorUtil = {
   },
 };
 
-export default ValidatorUtil;
+export default ValidatorUtils;
