@@ -2,7 +2,7 @@ import { RACE_CAR } from "./constants.js";
 
 import ValidatorUtil from "./Utils/ValidatorUtli.js";
 
-const { isNotNull, isNotOverLength, isNotShorterLength, isNumber } =
+const { isNotNull, isNotOverLength, isNotShorterLength, isNumber, isInteger } =
   ValidatorUtil;
 
 const CarRaceValidator = {
@@ -32,6 +32,7 @@ const CarRaceValidator = {
   tryCountInput(input) {
     isNotNull(input, "[ERROR] 시도 횟수를 입력해주세요");
     isNumber(input, "[ERROR] 시도 횟수는 숫자여야 합니다");
+    isInteger(input, "[ERROR] 시도 횟수는 정수여야 합니다");
     isNotShorterLength(input, 1, "[ERROR] 시도 횟수는 1이상이어야 합니다");
   },
 };

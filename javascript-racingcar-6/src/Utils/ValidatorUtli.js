@@ -22,6 +22,12 @@ const ValidatorUtil = {
       throw new Error(message);
     }
   },
+
+  isInteger(value, message) {
+    if (!Number.isInteger(Number(value))) {
+      throw new Error(message);
+    }
+  },
 };
 
 export default ValidatorUtil;
