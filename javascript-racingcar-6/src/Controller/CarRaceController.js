@@ -6,22 +6,36 @@ import CarRaceValidator from "../CarRaceValidator.js";
 import { MESSAGE, RACE_CAR } from "../constants.js";
 class CarRaceController {
   async start() {
-    // 자동차 이름 입력받기
+    const cars = await this.#getCars();
+    const tryCount = await this.#getTryCount();
+
+    this.#playRace(cars, tryCount);
+  }
+
+  async #getCars() {
     const carsInput = await InputView.readCarNames();
     CarRaceValidator.carInput(carsInput);
 
-    // 자동차 인스턴스 생성
     const carsArr = carsInput.split(MESSAGE.carsSeparator);
     const cars = carsArr.map((carName) => new Car(carName));
+    return cars;
+  }
 
-    // 시도할 횟수 입력
+  async #getTryCount() {
     const tryCountInput = await InputView.readTryCount();
     CarRaceValidator.tryCountInput(tryCountInput);
-    // 경주 진행 및 결과 출력
 
-    const race = new Race(cars, tryCountInput);
+    return tryCountInput;
+  }
+
+  #playRace(cars, tryCount) {
+    const race = new Race(cars, tryCount);
     race.play();
 
+    this.#printResult(race);
+  }
+
+  #printResult(race) {
     OutputView.printRaceStatus(race.getRaceResult());
     OutputView.printWinner(race.getWinner());
   }
