@@ -3,7 +3,7 @@ import Race from "../Model/Race.js";
 import InputView from "../View/InputView.js";
 import OutputView from "../View/OutputView.js";
 import CarRaceValidator from "../CarRaceValidator.js";
-import { MESSAGE, RACE_CAR } from "../constants.js";
+import { MESSAGE } from "../constants.js";
 class CarRaceController {
   async start() {
     const cars = await this.#getCars();
