@@ -1,19 +1,15 @@
+import CarRaceValidator from "../CarRaceValidator.js";
+
 class Race {
   #cars;
   #tryCount;
   #raceStatus;
 
   constructor(cars, tryCount) {
-    this.#validator(cars);
+    CarRaceValidator.RaceModel(cars, tryCount);
     this.#cars = cars;
     this.#tryCount = tryCount;
     this.#raceStatus = [];
-  }
-
-  #validator(cars) {
-    if (cars.length === 0) {
-      throw new Error("[ERROR] 1개 이상의 자동차가 경기에 참여해야합니다");
-    }
   }
 
   play() {
