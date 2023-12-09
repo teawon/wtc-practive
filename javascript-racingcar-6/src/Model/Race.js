@@ -1,9 +1,13 @@
 class Race {
   #cars;
+  #tryCount;
+  #raceStatus;
 
-  constructor(cars) {
+  constructor(cars, tryCount) {
     this.#validator(cars);
     this.#cars = cars;
+    this.#tryCount = tryCount;
+    this.#raceStatus = [];
   }
 
   #validator(cars) {
@@ -11,19 +15,35 @@ class Race {
       throw new Error("[ERROR] 1개 이상의 자동차가 경기에 참여해야합니다");
     }
   }
+
   play() {
-    this.#cars.forEach((car) => {
-      car.tryMoveOrStop();
-    });
+    while (this.#tryCount > 0) {
+      this.#cars.forEach((car) => {
+        car.tryMoveOrStop();
+      });
+      this.#saveRaceStatus();
+      this.#tryCount--;
+    }
   }
 
-  getRaceStatus() {
-    return this.#cars?.map((car) => {
+  #saveRaceStatus() {
+    const result = this.#cars.map((car) => {
       return {
         name: car.getName(),
         place: car.getPlace(),
       };
     });
+    this.#raceStatus.push(result);
+  }
+
+  getRaceResult() {
+    return this.#raceStatus;
+  }
+
+  getWinner() {
+    const maxPlace = Math.max(...this.#cars.map((car) => car.getPlace()));
+    const winners = this.#cars.filter((car) => car.getPlace() === maxPlace);
+    return winners.map((winner) => winner.getName());
   }
 }
 
