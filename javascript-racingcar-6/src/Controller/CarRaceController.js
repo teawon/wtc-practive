@@ -3,6 +3,7 @@ import Race from "../Model/Race.js";
 import InputView from "../View/InputView.js";
 import OutputView from "../View/OutputView.js";
 import CarRaceValidator from "../CarRaceValidator.js";
+import { MESSAGE, RACE_CAR } from "../constants.js";
 class CarRaceController {
   async start() {
     // 자동차 이름 입력받기
@@ -10,7 +11,7 @@ class CarRaceController {
     CarRaceValidator.carInput(carsInput);
 
     // 자동차 인스턴스 생성
-    const carsArr = carsInput.split(",");
+    const carsArr = carsInput.split(MESSAGE.carsSeparator);
     const cars = carsArr.map((carName) => new Car(carName));
 
     // 시도할 횟수 입력

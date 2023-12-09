@@ -1,5 +1,6 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import CarRaceValidator from "../CarRaceValidator.js";
+import { RACE_CAR } from "../constants.js";
 class Car {
   #name;
   #place;
@@ -12,7 +13,7 @@ class Car {
 
   tryMoveOrStop() {
     const number = MissionUtils.Random.pickNumberInRange(0, 9);
-    if (number >= 4) {
+    if (number >= RACE_CAR.canMoveValue) {
       this.#move();
     }
   }

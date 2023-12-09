@@ -1,4 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
+import { MESSAGE } from "../constants";
 
 const OutputView = {
   printRaceStatusInit() {
@@ -9,7 +10,7 @@ const OutputView = {
     this.printRaceStatusInit();
     raceStatus.forEach((status) => {
       status.forEach((car) => {
-        Console.print(`${car.name} : ${"-".repeat(car.place)}`);
+        Console.print(`${car.name} : ${MESSAGE.carPlace.repeat(car.place)}`);
         this.printLine();
       });
     });

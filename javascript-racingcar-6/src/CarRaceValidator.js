@@ -1,3 +1,5 @@
+import { RACE_CAR } from "./constants.js";
+
 import ValidatorUtil from "./Utils/ValidatorUtli.js";
 
 const { isNotNull, isNotOverLength, isNotShorterLength, isNumber } =
@@ -6,7 +8,11 @@ const { isNotNull, isNotOverLength, isNotShorterLength, isNumber } =
 const CarRaceValidator = {
   carModel(name) {
     isNotNull(name, "[ERROR] 이름이 존재하지 않습니다");
-    isNotOverLength(name, 5, "[ERROR] 이름이 5자를 초과합니다");
+    isNotOverLength(
+      name,
+      RACE_CAR.maxCarLength,
+      "[ERROR] 이름이 5자를 초과합니다"
+    );
   },
 
   RaceModel(cars, tryCount) {
