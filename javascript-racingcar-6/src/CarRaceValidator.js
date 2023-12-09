@@ -1,9 +1,9 @@
 import { RACE_CAR } from "./constants.js";
 
-import ValidatorUtil from "./Utils/ValidatorUtli.js";
+import ValidatorUtils from "./Utils/ValidatorUtlis.js";
 
 const { isNotNull, isNotOverLength, isNotShorterLength, isNumber, isInteger } =
-  ValidatorUtil;
+  ValidatorUtils;
 
 const CarRaceValidator = {
   carModel(name) {
